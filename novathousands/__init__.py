@@ -1,1 +1,1 @@
-from nova-thousands.driver import NovaThousandsDriver
+from novathousands.driver import NovaThousandsDriver
