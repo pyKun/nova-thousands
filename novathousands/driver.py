@@ -39,3 +39,17 @@ class NovaThousandsDriver(driver.ComputeDriver):
             }
         stat.append(host_stat)
         return stat
+
+    def get_available_resource(self, nodename):
+        dic = {'vcpus': 1,
+               'memory_mb': 8192,
+               'local_gb': 1028,
+               'vcpus_used': 0,
+               'memory_mb_used': 0,
+               'local_gb_used': 0,
+               'hypervisor_type': 'fake',
+               'hypervisor_version': '1.0',
+               'hypervisor_hostname': nodename,
+               'disk_available_least': 0,
+               'cpu_info': '?'}
+        return dic
