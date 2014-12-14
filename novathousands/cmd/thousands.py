@@ -16,14 +16,14 @@ DEFAULT_CONFIG_FILE = '/Users/Gareth/celtics/nova-thousands/etc/nova-thousands.c
 DEFAULT_TEMPLATE = {'boot_time': '30',
                     'boot_time_deviation': '0'}
 
-def parse_config():
+def read_config():
     config = ConfigParser.ConfigParser()
     config.read(DEFAULT_CONFIG_FILE)
     return config
 
 
-def main():
-    config = parse_config()
+def parse_config():
+    config = read_config()
     default = config.defaults()
     templates = {}
     ports = []
@@ -45,5 +45,8 @@ def main():
     # debug: print config object
 
     # hang farther process after fork
+
+def main():
+    parse_config()
 
 main()
