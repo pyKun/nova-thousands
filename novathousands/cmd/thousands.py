@@ -23,10 +23,12 @@ def read_config():
 
 
 def parse_config():
+    # TODO need unit test
     config = read_config()
     default = config.defaults()
     templates = {}
     ports = []
+    mappings = {}
 
     for sec in config.sections():
         _temp = dict(config.items(sec))
@@ -40,13 +42,15 @@ def parse_config():
         elif sec.startswith('port:'):
             _temp['name'] = sec[len('port:'):]
             ports.append(_temp) # TODO Port(_item)
+        elif sec == 'mappings':
+            for name, value in _temp.iteritems():
+                n, t, p = value.split('_')
+                mappings[name] = {'num':n, 'template':t, 'port':p}
 
-    # TODO fork processes to run nova compute services
-    # debug: print config object
+    return templates, ports, mappings
 
-    # hang farther process after fork
 
 def main():
-    parse_config()
+    templates, ports, mappings = parse_config()
 
 main()
